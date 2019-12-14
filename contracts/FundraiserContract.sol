@@ -10,6 +10,15 @@ contract FundraiserContract is Ownable{
     string public url;
     string public description;
 
+    mapping(address => Donation[]) private _donations;
+    uint public totalDonations;
+    uint public donationsCount;
+
+    struct Donation{
+        uint value;
+        uint date;
+    }
+
     constructor(
         address _custodian,
         address payable _beneficiary, 
@@ -28,12 +37,33 @@ contract FundraiserContract is Ownable{
         description = _desc;
     }
 
-    function getName() public view returns(string memory _name){
-        _name = name;
+    function donate(uint _value) public payable{
+        require(msg.value >= _value && _value > 0);
+        Donation memory donation = Donation({value: _value, date: now});
+        _donations[msg.sender].push(donation);
+        totalDonations += _value;
+        ++donationsCount;
+    } 
+
+    function setBeneficiary(address payable _beneficiary) public onlyOwner {
+        beneficiary = _beneficiary;
     }
 
-    // function getBeneficiary() public view returns(address payable){
-    //     return beneficiary;
-    // }
+    function myDonationsCount() public view returns(uint){
+        return _donations[msg.sender].length;
+    }
+
+    function myDonations() public view returns(uint[] memory values, uint[] memory dates){
+        uint count = myDonationsCount();
+        values = new uint[](count);
+        dates = new uint[](count);
+
+        for(uint i = 0; i < count; i++){
+            Donation storage donation = _donations[msg.sender][i];
+            values[i] = donation.value;
+            dates[i] = donation.date;
+        }
+        return(values, dates);
+    }
 
 }

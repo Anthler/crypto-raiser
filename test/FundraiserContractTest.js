@@ -12,7 +12,6 @@ contract("FundraiserContract", (accounts) => {
 
     beforeEach(async () =>{
         fundraiser = await FundraiserContract.new(owner, beneficiaryAddress, name, imageUrl,url, description);
-        
     })
 
     describe("Test contract initialization", async () => {
@@ -50,13 +49,62 @@ contract("FundraiserContract", (accounts) => {
 
     describe("Functions", ()  => {
 
-        describe("setBeneficiary()", async =>{
+        describe("setBeneficiary()", () =>{
 
-            it("", async () => {
+            const newBeneficiary = accounts[2];
 
+            it(" Sets new beneficiary", async () => {
+                await fundraiser.setBeneficiary(newBeneficiary, {from: owner});
+                const currentBeneficiary = await fundraiser.beneficiary();
+                assert.equal(currentBeneficiary, newBeneficiary)
             });
-            //it("", async () => {});
-            //it("", async () => {});
+
+            it("throws an error when called from a non-owner account", async () => {
+                
+                try {
+                    await fundraiser.setBeneficiary(accounts[4], {from: accounts[3]})
+                    assert.fail("withdraw was not restricted to owners");
+                } catch (err) {
+                    const expectedError = "Ownable: caller is not the owner";
+                    const reason = err.reason;
+                    assert.equal(reason, expectedError, "should not be permitted");
+                }
+            });
+        })
+
+        describe(" donate() ", async () =>{
+
+            const value = web3.utils.toWei('0.289');
+            const donor = accounts[2];
+            
+            it("increases donationsCount", async () =>{
+                let countBefore = await fundraiser.myDonationsCount({from: donor});
+                await fundraiser.donate(value, {from: donor, value: value});
+                let countAfter = await fundraiser.myDonationsCount({from: donor});
+                assert.equal(1, countAfter - countBefore);
+            })
+
+            it("it adds to myDonations", async () =>{
+                await fundraiser.donate(value, {from: donor, value: value});
+                const {values, dates} = await fundraiser.myDonations({from: donor});
+                assert.equal(value, values[0], "Value should match");
+                assert(dates, "Date should be present");
+            });
+
+            it("Increases total amount", async () => {
+                const totalBefore = await fundraiser.totalDonations();
+                await fundraiser.donate(value, {from: donor, value:value});
+                const totalAfter = await fundraiser.totalDonations();
+                const diff = totalAfter - totalBefore;
+                assert.equal(value, diff, "difference should match the donation value");
+            });
+
+            it("Increases donationsCount by 1", async () =>{
+                const countBefore = await fundraiser.donationsCount();
+                await fundraiser.donate(value, {from: donor, value:value});
+                const countAfter = await fundraiser.donationsCount();
+                assert.equal(1,countAfter - countBefore, "donationsCount should increment by 1" )
+            });
         })
     })
 
