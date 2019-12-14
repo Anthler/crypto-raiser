@@ -105,7 +105,85 @@ contract("FundraiserContract", (accounts) => {
                 const countAfter = await fundraiser.donationsCount();
                 assert.equal(1,countAfter - countBefore, "donationsCount should increment by 1" )
             });
+
+            it("Emit DonationReceived Event", async () =>{
+                const tx = await fundraiser.donate(value, {from: donor, value});
+                const expectedEvent = "DonationReceived";
+                actualEvent = tx.logs[0].event;
+                assert.equal(actualEvent, expectedEvent, "Events should match")
+                
+            })
         })
+
+        describe(" withdraw() ", async () => {
+
+            beforeEach(async () => {
+                const value = web3.utils.toWei('0.1');
+                await fundraiser.donate(value, {from: accounts[2], value: value})
+            })
+
+            describe("access controls", async () => {
+
+                it("throws an error when called from a non-owner account", async () => {
+                    try {
+                        await fundraiser.withdraw({from: accounts[3]});
+                        assert.fail("withdraw was not restricted to owners")
+                    } catch (err) {
+                        const expectedError = "Ownable: caller is not the owner";
+                        const actualError = err.reason;
+                        assert.equal(expectedError, actualError, " Errors must match");
+                    }
+                });
+
+                it("permits the owner to call the function", async () => {
+                    try {
+                        await fundraiser.withdraw({from: owner})
+                        assert(true, "no errors were thrown");
+                    } catch (err) {
+                        assert.fail(" Should not have thrown any errors");
+                    }
+                });
+
+                it("transfers balance to beneficiary", async () => {
+                    const currentContractBalance = await web3.eth.getBalance(fundraiser.address)
+                    const currentBeneficiaryBalance = await web3.eth.getBalance(beneficiaryAddress)
+                    await fundraiser.withdraw({from: owner});
+                    const newContractBalance = await web3.eth.getBalance(fundraiser.address);
+                    const newBeneficiaryBalance = await web3.eth.getBalance(beneficiaryAddress);
+                    const beneficiaryBalanceDiff = newBeneficiaryBalance - currentBeneficiaryBalance;
+                    assert.equal(0, newContractBalance, "contract should have a 0 balance");
+                    assert.equal(beneficiaryBalanceDiff, currentContractBalance, "beneficiary should receive all the funds");
+                })
+
+                it("Test withdraw event", async () => {
+                    const tx = await fundraiser.withdraw({from: owner});
+                    const expectedEvent = "Withdraw";
+                    const actualEvent = tx.logs[0].event
+                    assert.equal(expectedEvent, actualEvent, "Event should match");
+                })
+            })
+
+            describe("fallback()", async () => {
+                const value = web3.utils.toWei("0.289");
+
+                it("increases totalDonations amount", async () => {
+                    const totalDonationsBefore = await fundraiser.totalDonations();
+                    await web3.eth.sendTransaction({to:fundraiser.address, from: accounts[9], value})
+                    const totalDonationsAfter = await fundraiser.totalDonations();
+                    const donationsDifference = totalDonationsAfter - totalDonationsBefore;
+                    assert.equal(donationsDifference, value, "donation shoud match");
+                });
+
+                it("increases donations count", async () => {
+                    const countBefore = await fundraiser.donationsCount();
+                    await web3.eth.sendTransaction({to:fundraiser.address, from: accounts[9], value})
+                    const countAfter = await fundraiser.donationsCount();
+                    const diff = countAfter - countBefore;
+                    assert.equal(1, diff, "Should increment by 1");
+                })
+            })
+        })
+
     })
 
 })

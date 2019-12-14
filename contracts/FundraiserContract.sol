@@ -14,6 +14,9 @@ contract FundraiserContract is Ownable{
     uint public totalDonations;
     uint public donationsCount;
 
+    event DonationReceived(address indexed donor ,uint value);
+    event Withdraw(uint amount);
+
     struct Donation{
         uint value;
         uint date;
@@ -37,16 +40,28 @@ contract FundraiserContract is Ownable{
         description = _desc;
     }
 
+    function () external payable{
+        totalDonations += msg.value;
+        ++donationsCount;
+    }
+
     function donate(uint _value) public payable{
         require(msg.value >= _value && _value > 0);
         Donation memory donation = Donation({value: _value, date: now});
         _donations[msg.sender].push(donation);
         totalDonations += _value;
         ++donationsCount;
+        emit DonationReceived(msg.sender, _value);
     } 
 
     function setBeneficiary(address payable _beneficiary) public onlyOwner {
         beneficiary = _beneficiary;
+    }
+
+    function withdraw() public payable onlyOwner {
+        uint balance = address(this).balance;
+        beneficiary.transfer(balance);
+        emit Withdraw(balance);
     }
 
     function myDonationsCount() public view returns(uint){
