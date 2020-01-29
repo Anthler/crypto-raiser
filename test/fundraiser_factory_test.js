@@ -132,9 +132,6 @@ contract(" Contract: FundraiserFactoryContract", accounts => {
                 } catch (err) {
                     assert.fail("limit and offset exceeded bounds");
                 }
-            })
-
-            //it("", async () => {})
+            });
     })
-
 });

@@ -1,44 +1,40 @@
 
 import React, { useState, useEffect } from "react";
-import FactoryContract from "./contracts/FundraiserFactoryContract.json";
-import getWeb3 from "./utils/getWeb3";
+import FundraiserFactoryContract from "./contracts/FundraiserFactory.json";
+import getWeb3 from "../utils/getWeb3";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
-import NewFundraiser from './components/NewFundraiser'
-import Home from './components/Home'
-import Receipts from './components/Receipts'
+import NewFundraiser from './NewFundraiser'
+import Home from './Home'
+import Receipts from './Receipts'
 
 import "./App.css";
 
 const App = () => {
   const [state, setState] = useState({web3: null, accounts: null, contract: null});
+  const classes = useStyles();
 
   useEffect(() => {
     const init = async() => {
       try {
-        // Get network provider and web3 instance.
+        const contractAddress = "0x31Ae36cdC676Fd5173bC4c99979a2434ee89be46";
         const web3 = await getWeb3();
-
-        // Use web3 to get the user's accounts.
         const accounts = await web3.eth.getAccounts();
-
-        // Get the contract instance.
         const networkId = await web3.eth.net.getId();
-        const deployedNetwork = FactoryContract.networks[networkId];
+        const deployedNetwork = FundraiserFactoryContract.networks[networkId];
         const instance = new web3.eth.Contract(
-          FactoryContract.abi,
-          deployedNetwork && deployedNetwork.address,
+          FundraiserFactoryContract.abi,
+          deployedNetwork && deployedNetwork.address
         );
 
-        // Set web3, accounts, and contract to the state, and then proceed with an
         setState({web3, accounts, contract: instance});
 
       } catch(error) {
-        // Catch any errors for any of the above operations.
+
         alert(
           `Failed to load web3, accounts, or contract. Check console for details.`,
         );
