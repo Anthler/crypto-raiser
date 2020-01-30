@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 import FundraiserCard from './FundraiserCard'
 import getWeb3 from "../utils/getWeb3";
 import FundraiserFactoryContract from "../contracts/FundraiserFactoryContract.json";
@@ -65,9 +67,12 @@ const Home = () => {
   }
 
   return (
-    <div className="main-container">
+   <Container>
+     <br/>
+      <div className="main-container">
       {displayFundraisers()}
     </div>
+   </Container>
   )
 }
 

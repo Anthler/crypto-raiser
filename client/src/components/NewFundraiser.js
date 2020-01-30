@@ -36,14 +36,15 @@ const [ web3, setWeb3 ] = useState(null)
 useEffect(() => {
   const init = async() => {
     try {
-      const contractAddress = "0x18855016e8aC4f37d9f80639c499746611B5330b";
+      // const contractAddress = "0x18855016e8aC4f37d9f80639c499746611B5330b";
       const web3 = await getWeb3();
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = FundraiserFactoryContract.networks[networkId];
       const accounts = await web3.eth.getAccounts();
       const instance = new web3.eth.Contract(
         FundraiserFactoryContract.abi,
-        deployedNetwork && deployedNetwork.address
+        "0x4bC073bD72C32404f30209aF6b8628c420120236"
+        //deployedNetwork && deployedNetwork.address
       );
 
       setWeb3(web3)
@@ -69,20 +70,24 @@ const [ contract, setContract] = useState(null)
 const [ accounts, setAccounts ] = useState(null)
 
 const handleSubmit = async () => {
+
   const imageURL = image
   const url = website
   const beneficiary = address
   const desc = description
   //const currentUser = await web3.currentProvider.selectedAddress
 
-  const transaction = await contract.methods.createFundraiser(
-    beneficiary,
-    name,
-    imageURL,
-    url,
-    desc
-    
-  ).send({ from: accounts[0] })
+  try {
+    const tx = await contract.methods.createFundraiser(
+      beneficiary,
+      name,
+      imageURL,
+      url,
+      desc
+    ).send({ from: accounts[0] })
+  } catch (error) {
+    console.log(error)
+  }
 
   alert('Successfully created fundraiser')
 }

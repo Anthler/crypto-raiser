@@ -1,8 +1,10 @@
-pragma solidity 0.5.12;
+pragma solidity 0.5.16;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/ownership/Ownable.sol";
-contract FundraiserContract is Ownable{
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/lifecycle/Pausable.sol";
+contract FundraiserContract is Ownable, ReentrancyGuard{
 
     using SafeMath for uint256;
 
@@ -47,7 +49,7 @@ contract FundraiserContract is Ownable{
         ++donationsCount;
     }
 
-    function donate(uint _value) public payable{
+    function donate(uint _value) public payable nonReentrant(){
         require(msg.value >= _value && _value > 0);
         Donation memory donation = Donation({value: _value, date: now});
         _donations[msg.sender].push(donation);
@@ -60,7 +62,7 @@ contract FundraiserContract is Ownable{
         beneficiary = _beneficiary;
     }
 
-    function withdraw() public payable onlyOwner {
+    function withdraw() public payable onlyOwner() nonReentrant() {
         uint balance = address(this).balance;
         beneficiary.transfer(balance);
         emit Withdraw(balance);

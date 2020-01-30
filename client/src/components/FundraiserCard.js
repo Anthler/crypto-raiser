@@ -12,6 +12,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {Redirect} from 'react-router-dom';
 
 import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
@@ -176,8 +177,7 @@ const FundraiserCard = (props) => {
       value: donation,
       gas: 650000
     })
-    console.log(fundraisercontract)
-    setOpen(false);
+      setOpen(false);
   }
 
   const renderDonationsList = () => {

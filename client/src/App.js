@@ -7,6 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 
 import NewFundraiser from './components/NewFundraiser'
 import Home from './components/Home'
@@ -59,14 +61,15 @@ const App = () => {
   };
 
   return (
-    <div>
+      <div>
       <Router>
         <AppBar position="static" color="default" style={{ margin: 0 }}>
           <Toolbar>
            <Typography variant="h6" color="inherit">
              <NavLink className="nav-link" to="/">Home</NavLink>
            </Typography>
-           <NavLink className="nav-link" to="/new/">New</NavLink>
+           <NavLink className="nav-link" to="/new/">New Fundraiser</NavLink>
+           <NavLink className="nav-link" to="/reciepts">Reciepts</NavLink>
           </Toolbar>
        </AppBar>
 

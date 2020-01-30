@@ -31,5 +31,8 @@ module.exports = {
       gasPrice: "7000000000",
       gas: 6000000
     }
-  }
+  },
+  plugins: [ 
+    "truffle-security"
+   ],
 };
