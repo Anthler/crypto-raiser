@@ -22,11 +22,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 import getWeb3 from "../utils/getWeb3";
-import FundraiserContract from "../contracts/FundraiserContract.json";
+import Fundraiser from "../contracts/Fundraiser.json";
 import Web3 from 'web3'
 
 import { Link } from 'react-router-dom'
-//const contractAddress = "0x31Ae36cdC676Fd5173bC4c99979a2434ee89be46";
 
 const cc = require('cryptocompare')
 
@@ -67,7 +66,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const FundraiserCard = (props) => {
-  const web3 =  new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"))
+  const web3 =  new Web3( Web3.givenProvider || new Web3.providers.HttpProvider("http://127.0.0.1:8545"))
 
   const [ contract, setContract] = useState(null)
   const [ accounts, setAccounts ] = useState(null)
@@ -102,10 +101,10 @@ const FundraiserCard = (props) => {
       const accounts = await window.ethereum.enable();
       const fund = fundraiser
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = FundraiserContract.networks[networkId];
+      const deployedNetwork = Fundraiser.networks[networkId];
       
       const instance = new web3.eth.Contract(
-        FundraiserContract.abi,
+        Fundraiser.abi,
         fund
       );
 
@@ -167,7 +166,6 @@ const FundraiserCard = (props) => {
 
   const submitFunds = async () => {
     const fundraisercontract = contract
-    //const contractInstance = new web3.eth.Contract(FundraiserContract.abi, fundraisercontract.address)
     const ethRate = exchangeRate
     const ethTotal = donationAmount / ethRate
     const donation = web3.utils.toWei(ethTotal.toString())

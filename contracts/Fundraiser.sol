@@ -4,9 +4,11 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/ownership/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/lifecycle/Pausable.sol";
-contract FundraiserContract is Ownable, ReentrancyGuard{
+contract Fundraiser is Ownable, ReentrancyGuard{
 
     using SafeMath for uint256;
+
+    bool public stopped;
 
     string public name;
     address payable public beneficiary;
@@ -14,9 +16,10 @@ contract FundraiserContract is Ownable, ReentrancyGuard{
     string public url;
     string public description;
 
-    mapping(address => Donation[]) private _donations;
     uint public totalDonations;
     uint public donationsCount;
+
+    mapping(address => Donation[]) private _donations;
 
     event DonationReceived(address indexed donor ,uint value);
     event Withdraw(uint amount);
@@ -24,6 +27,16 @@ contract FundraiserContract is Ownable, ReentrancyGuard{
     struct Donation{
         uint value;
         uint date;
+    }
+
+    modifier whenNotStopped(){
+        require(stopped != true, "Currently you cannot perform this action because contract is stopped");
+        _;
+    }
+
+    modifier whenStopped(){
+        require(stopped == true, "Currently you cannot perform this action because contract is not stopped");
+        _;
     }
 
     constructor(
@@ -46,10 +59,18 @@ contract FundraiserContract is Ownable, ReentrancyGuard{
 
     function () external payable{
         totalDonations += msg.value;
-        ++donationsCount;
+        donationsCount++;
     }
 
-    function donate(uint _value) public payable nonReentrant(){
+    function stopContract() public onlyOwner(){
+        stopped = true;
+    }
+
+    function resumeContract() public onlyOwner(){
+        stopped = false;
+    }
+
+    function donate(uint _value) public payable nonReentrant() whenNotStopped(){
         require(msg.value >= _value && _value > 0);
         Donation memory donation = Donation({value: _value, date: now});
         _donations[msg.sender].push(donation);
@@ -62,7 +83,7 @@ contract FundraiserContract is Ownable, ReentrancyGuard{
         beneficiary = _beneficiary;
     }
 
-    function withdraw() public payable onlyOwner() nonReentrant() {
+    function withdraw() public payable onlyOwner() nonReentrant() whenNotStopped() {
         uint balance = address(this).balance;
         beneficiary.transfer(balance);
         emit Withdraw(balance);

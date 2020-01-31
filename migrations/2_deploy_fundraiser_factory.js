@@ -1,5 +1,5 @@
-var FundraiserFactoryContract = artifacts.require("./FundraiserFactoryContract.sol");
+var FundraiserFactory = artifacts.require("./FundraiserFactory.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(FundraiserFactoryContract);
+  deployer.deploy(FundraiserFactory);
 };

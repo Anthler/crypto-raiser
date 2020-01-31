@@ -32,7 +32,24 @@ module.exports = {
       gas: 6000000
     }
   },
+  ens: {
+    enabled: true
+  }, 
+  
   plugins: [ 
     "truffle-security"
    ],
+
+   compilers: {
+    solc: {
+      version: "0.5.16", 
+
+      parser: "solcjs", 
+      settings: {
+        optimizer: {
+          enabled: true,
+        },
+      }
+    }
+  }
 };

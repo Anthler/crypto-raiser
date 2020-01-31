@@ -1,0 +1,1 @@
+rinkeby_deployed_address = 0x9b926Ca681b90984e22Cd2Df6a6f284ab0b3E664

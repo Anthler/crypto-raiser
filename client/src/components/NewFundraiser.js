@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import getWeb3 from "../utils/getWeb3";
-import FundraiserFactoryContract from "../contracts/FundraiserFactoryContract.json";
+import FundraiserFactory from "../contracts/FundraiserFactory.json";
 import Web3 from 'web3'
 
 
@@ -36,10 +36,9 @@ const [ web3, setWeb3 ] = useState(null)
 useEffect(() => {
   const init = async() => {
     try {
-      // const contractAddress = "0x18855016e8aC4f37d9f80639c499746611B5330b";
       const web3 = await getWeb3();
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = FundraiserFactoryContract.networks[networkId];
+      const deployedNetwork = FundraiserFactory.networks[networkId];
       const accounts = await web3.eth.getAccounts();
       const instance = new web3.eth.Contract(
         FundraiserFactoryContract.abi,

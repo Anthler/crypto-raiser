@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import FundraiserFactoryContract from "./contracts/FundraiserFactory.json";
+import FundraiserFactory from "./contracts/FundraiserFactory.json";
 import getWeb3 from "../utils/getWeb3";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,13 +21,12 @@ const App = () => {
   useEffect(() => {
     const init = async() => {
       try {
-        const contractAddress = "0x31Ae36cdC676Fd5173bC4c99979a2434ee89be46";
         const web3 = await getWeb3();
         const accounts = await web3.eth.getAccounts();
         const networkId = await web3.eth.net.getId();
-        const deployedNetwork = FundraiserFactoryContract.networks[networkId];
+        const deployedNetwork = FundraiserFactory.networks[networkId];
         const instance = new web3.eth.Contract(
-          FundraiserFactoryContract.abi,
+          FundraiserFactory.abi,
           deployedNetwork && deployedNetwork.address
         );
 
@@ -63,6 +62,10 @@ const App = () => {
              <NavLink className="nav-link" to="/">Home</NavLink>
            </Typography>
            <NavLink className="nav-link" to="/new/">New</NavLink>
+
+           <Typography variant="h6" color="inherit">
+             Current User's Address: {accounts[0]} 
+           </Typography>
           </Toolbar>
        </AppBar>
 

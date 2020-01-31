@@ -1,12 +1,12 @@
 pragma solidity 0.5.16;
 
-import "./FundraiserContract.sol";
+import "./Fundraiser.sol";
 
-contract FundraiserFactoryContract {
+contract FundraiserFactory{
 
     uint constant MAXLIMIT = 20;
 
-    FundraiserContract[] private _fundraisers;
+    Fundraiser[] private _fundraisers;
 
     event FundraiserCreated(address indexed fundraiser);
 
@@ -19,7 +19,7 @@ contract FundraiserFactoryContract {
     )
     public
     {
-        FundraiserContract fundraiser = new FundraiserContract(
+        Fundraiser fundraiser = new Fundraiser(
             msg.sender, 
             _beneficiary,
             _name,
@@ -35,7 +35,7 @@ contract FundraiserFactoryContract {
     function fundraisers(uint limit, uint offset) 
         public 
         view 
-        returns(FundraiserContract[] memory coll)
+        returns(Fundraiser[] memory coll)
         {
             require(offset <= fundraisersCount(), "offset out of bounds");
 
@@ -43,7 +43,7 @@ contract FundraiserFactoryContract {
 
             size = size < limit ? size : limit;
             size = size < MAXLIMIT ? size : MAXLIMIT;
-            coll = new FundraiserContract[](size);
+            coll = new Fundraiser[](size);
 
             for(uint i = 0; i < size; i++){
                 coll[i] = _fundraisers[offset +i];
