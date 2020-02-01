@@ -41,13 +41,13 @@ useEffect(() => {
       const deployedNetwork = FundraiserFactory.networks[networkId];
       const accounts = await web3.eth.getAccounts();
       const instance = new web3.eth.Contract(
-        FundraiserFactoryContract.abi,
-        "0x4bC073bD72C32404f30209aF6b8628c420120236"
-        //deployedNetwork && deployedNetwork.address
+        FundraiserFactory.abi,
+        deployedNetwork.address
       );
 
       setWeb3(web3)
       setContract(instance)
+      console.log(instance)
       setAccounts(accounts)
 
     } catch(error) {
@@ -74,16 +74,15 @@ const handleSubmit = async () => {
   const url = website
   const beneficiary = address
   const desc = description
-  //const currentUser = await web3.currentProvider.selectedAddress
 
   try {
-    const tx = await contract.methods.createFundraiser(
-      beneficiary,
-      name,
-      imageURL,
-      url,
-      desc
-    ).send({ from: accounts[0] })
+      await contract.methods.createFundraiser(
+        beneficiary,
+        name,
+        imageURL,
+        url,
+        desc
+      ).send({ from: accounts[0] })
   } catch (error) {
     console.log(error)
   }

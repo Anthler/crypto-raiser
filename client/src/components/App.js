@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import FundraiserFactory from "./contracts/FundraiserFactory.json";
+import FundraiserFactory from "../contracts/FundraiserFactory.json";
 import getWeb3 from "../utils/getWeb3";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,11 +12,11 @@ import NewFundraiser from './NewFundraiser'
 import Home from './Home'
 import Receipts from './Receipts'
 
-import "./App.css";
+import "../App.css";
 
 const App = () => {
   const [state, setState] = useState({web3: null, accounts: null, contract: null});
-  const classes = useStyles();
+  //const classes = useStyles();
 
   useEffect(() => {
     const init = async() => {
@@ -31,6 +31,7 @@ const App = () => {
         );
 
         setState({web3, accounts, contract: instance});
+        console.log(accounts)
 
       } catch(error) {
 
@@ -61,11 +62,8 @@ const App = () => {
            <Typography variant="h6" color="inherit">
              <NavLink className="nav-link" to="/">Home</NavLink>
            </Typography>
-           <NavLink className="nav-link" to="/new/">New</NavLink>
-
-           <Typography variant="h6" color="inherit">
-             Current User's Address: {accounts[0]} 
-           </Typography>
+           <NavLink className="nav-link" to="/new/">New Fundraiser</NavLink>
+              Your Eth Address: {state.accounts}
           </Toolbar>
        </AppBar>
 

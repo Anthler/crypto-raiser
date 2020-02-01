@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import FactoryContract from "./contracts/FundraiserFactoryContract.json";
+import FundraiserFactory from "./contracts/FundraiserFactory.json";
 import getWeb3 from "./utils/getWeb3";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -30,9 +30,9 @@ const App = () => {
 
         // Get the contract instance.
         const networkId = await web3.eth.net.getId();
-        const deployedNetwork = FactoryContract.networks[networkId];
+        const deployedNetwork = FundraiserFactory.networks[networkId];
         const instance = new web3.eth.Contract(
-          FactoryContract.abi,
+          FundraiserFactory.abi,
           deployedNetwork && deployedNetwork.address,
         );
 
