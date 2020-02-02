@@ -36,7 +36,7 @@ const [ web3, setWeb3 ] = useState(null)
 useEffect(() => {
   const init = async() => {
     try {
-      const web3 = await getWeb3();
+      const web3 =  new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"))
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = FundraiserFactory.networks[networkId];
       const accounts = await web3.eth.getAccounts();

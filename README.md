@@ -4,7 +4,7 @@ My fundraiser Dapp, allows people and organizations to raise funds after some  d
 
 How to set it up 
 
-run command ###`ganache-cli` on port 8545
+run command ### `ganache-cli` on port 8545
 run command: ### `truffle migrate --network develop`
 Test: `truffle test`
 
