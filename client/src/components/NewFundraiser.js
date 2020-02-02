@@ -36,13 +36,13 @@ const [ web3, setWeb3 ] = useState(null)
 useEffect(() => {
   const init = async() => {
     try {
-      const web3 =  new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"))
+      const web3 =  await getWeb3()
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = FundraiserFactory.networks[networkId];
       const accounts = await web3.eth.getAccounts();
       const instance = new web3.eth.Contract(
         FundraiserFactory.abi,
-        deployedNetwork.address
+        deployedNetwork.address && deployedNetwork.address
       );
 
       setWeb3(web3)
@@ -61,6 +61,7 @@ useEffect(() => {
 }, []);
 
 const [ name, setFundraiserName ] = useState(null)
+const [ custodian, setCustodian ] = useState(null)
 const [ website, setFundraiserWebsite ] = useState(null)
 const [ description, setFundraiserDescription ] = useState(null)
 const [ image, setImage ] = useState(null)
