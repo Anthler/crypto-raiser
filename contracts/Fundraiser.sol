@@ -1,9 +1,9 @@
-pragma solidity 0.5.16;
+pragma solidity 0.6.5;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/ownership/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import "@openzeppelin/contracts/lifecycle/Pausable.sol";
+import "@openzeppelin/contracts/utils/Pausable.sol";
 contract Fundraiser is Ownable, ReentrancyGuard{
 
     using SafeMath for uint256;
@@ -49,7 +49,7 @@ contract Fundraiser is Ownable, ReentrancyGuard{
     ) 
         public 
     {
-        _transferOwnership(_custodian);
+        transferOwnership(_custodian);
         beneficiary = _beneficiary;
         name = _name;
         imageUrl = _imageUrl;
@@ -57,7 +57,7 @@ contract Fundraiser is Ownable, ReentrancyGuard{
         description = _desc;
     }
 
-    function () external payable{
+    receive () external payable{
         totalDonations += msg.value;
         donationsCount++;
     }
