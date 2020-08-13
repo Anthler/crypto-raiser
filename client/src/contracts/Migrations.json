@@ -61,16 +61,16 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.5+commit.f956cc89\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"new_address\",\"type\":\"address\"}],\"name\":\"upgrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/anthler/Desktop/SMART CONTRACTS/fundraiser-dapp/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/anthler/Desktop/SMART CONTRACTS/fundraiser-dapp/contracts/Migrations.sol\":{\"keccak256\":\"0xb23cacde7cbf7b0bb71f57d74064aacd4ff104046df6de4481179d9b48b9fb1d\",\"urls\":[\"bzz-raw://a0503178e05bb060ce6db612b4fc62e4e0a99d67bcdb8af9d26cc22b924953c2\",\"dweb:/ipfs/QmYvzGwgAiamLc8CEydpPyvv7Zg1TVcreF9PTep1JSSsXK\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b031916331790556101b4806100326000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80630900f01014610051578063445df0ac146100795780638da5cb5b14610093578063fdacd576146100b7575b600080fd5b6100776004803603602081101561006757600080fd5b50356001600160a01b03166100d4565b005b610081610151565b60408051918252519081900360200190f35b61009b610157565b604080516001600160a01b039092168252519081900360200190f35b610077600480360360208110156100cd57600080fd5b5035610166565b6000546001600160a01b031633141561014e576000819050806001600160a01b031663fdacd5766001546040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561013457600080fd5b505af1158015610148573d6000803e3d6000fd5b50505050505b50565b60015481565b6000546001600160a01b031681565b6000546001600160a01b031633141561014e5760015556fea264697066735822122055a257d87fd54af390e2315aa6f88715c70a32c1037bc1b562f2e7e421c2316464736f6c63430006050033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80630900f01014610051578063445df0ac146100795780638da5cb5b14610093578063fdacd576146100b7575b600080fd5b6100776004803603602081101561006757600080fd5b50356001600160a01b03166100d4565b005b610081610151565b60408051918252519081900360200190f35b61009b610157565b604080516001600160a01b039092168252519081900360200190f35b610077600480360360208110156100cd57600080fd5b5035610166565b6000546001600160a01b031633141561014e576000819050806001600160a01b031663fdacd5766001546040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561013457600080fd5b505af1158015610148573d6000803e3d6000fd5b50505050505b50565b60015481565b6000546001600160a01b031681565b6000546001600160a01b031633141561014e5760015556fea264697066735822122055a257d87fd54af390e2315aa6f88715c70a32c1037bc1b562f2e7e421c2316464736f6c63430006050033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.5+commit.f956cc89\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"new_address\",\"type\":\"address\"}],\"name\":\"upgrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/anthler/Desktop/SMART CONTRACTS/crypto-raiser/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/anthler/Desktop/SMART CONTRACTS/crypto-raiser/contracts/Migrations.sol\":{\"keccak256\":\"0xb23cacde7cbf7b0bb71f57d74064aacd4ff104046df6de4481179d9b48b9fb1d\",\"urls\":[\"bzz-raw://a0503178e05bb060ce6db612b4fc62e4e0a99d67bcdb8af9d26cc22b924953c2\",\"dweb:/ipfs/QmYvzGwgAiamLc8CEydpPyvv7Zg1TVcreF9PTep1JSSsXK\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b031916331790556101b4806100326000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80630900f01014610051578063445df0ac146100795780638da5cb5b14610093578063fdacd576146100b7575b600080fd5b6100776004803603602081101561006757600080fd5b50356001600160a01b03166100d4565b005b610081610151565b60408051918252519081900360200190f35b61009b610157565b604080516001600160a01b039092168252519081900360200190f35b610077600480360360208110156100cd57600080fd5b5035610166565b6000546001600160a01b031633141561014e576000819050806001600160a01b031663fdacd5766001546040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561013457600080fd5b505af1158015610148573d6000803e3d6000fd5b50505050505b50565b60015481565b6000546001600160a01b031681565b6000546001600160a01b031633141561014e5760015556fea26469706673582212202a699bf97cf207512180bb078884c211768b38d420fad0804bf9cabdf18915a564736f6c63430006050033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80630900f01014610051578063445df0ac146100795780638da5cb5b14610093578063fdacd576146100b7575b600080fd5b6100776004803603602081101561006757600080fd5b50356001600160a01b03166100d4565b005b610081610151565b60408051918252519081900360200190f35b61009b610157565b604080516001600160a01b039092168252519081900360200190f35b610077600480360360208110156100cd57600080fd5b5035610166565b6000546001600160a01b031633141561014e576000819050806001600160a01b031663fdacd5766001546040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561013457600080fd5b505af1158015610148573d6000803e3d6000fd5b50505050505b50565b60015481565b6000546001600160a01b031681565b6000546001600160a01b031633141561014e5760015556fea26469706673582212202a699bf97cf207512180bb078884c211768b38d420fad0804bf9cabdf18915a564736f6c63430006050033",
   "immutableReferences": {},
   "sourceMap": "25:480:2:-:0;;;177:50;5:9:-1;2:2;;;27:1;24;17:12;2:2;-1:-1;204:5:2;:18;;-1:-1:-1;;;;;;204:18:2;212:10;204:18;;;25:480;;;;;;",
   "deployedSourceMap": "25:480:2:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;25:480:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;338:165:2;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;338:165:2;-1:-1:-1;;;;;338:165:2;;:::i;:::-;;73:36;;;:::i;:::-;;;;;;;;;;;;;;;;49:20;;;:::i;:::-;;;;-1:-1:-1;;;;;49:20:2;;;;;;;;;;;;;;231:103;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;231:103:2;;:::i;338:165::-;160:5;;-1:-1:-1;;;;;160:5:2;146:10;:19;142:26;;;400:19:::1;433:11;400:45;;451:8;-1:-1:-1::0;;;;;451:21:2::1;;473:24;;451:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5:9:-1;2:2;;;27:1;24::::0;17:12:::1;2:2;451:47:2;;;;8:9:-1;5:2;;;45:16;42:1;39::::0;24:38:::1;77:16;74:1;67:27;5:2;451:47:2;;;;167:1;142:26:::0;338:165;:::o;73:36::-;;;;:::o;49:20::-;;;-1:-1:-1;;;;;49:20:2;;:::o;231:103::-;160:5;;-1:-1:-1;;;;;160:5:2;146:10;:19;142:26;;;293:24:::1;:36:::0;231:103::o",
   "source": "pragma solidity ^0.6.5;\n\ncontract Migrations {\n  address public owner;\n  uint public last_completed_migration;\n\n  modifier restricted() {\n    if (msg.sender == owner) _;\n  }\n\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n\n  function upgrade(address new_address) public restricted {\n    Migrations upgraded = Migrations(new_address);\n    upgraded.setCompleted(last_completed_migration);\n  }\n}\n",
-  "sourcePath": "/home/anthler/Desktop/SMART CONTRACTS/fundraiser-dapp/contracts/Migrations.sol",
+  "sourcePath": "/home/anthler/Desktop/SMART CONTRACTS/crypto-raiser/contracts/Migrations.sol",
   "ast": {
-    "absolutePath": "/home/anthler/Desktop/SMART CONTRACTS/fundraiser-dapp/contracts/Migrations.sol",
+    "absolutePath": "/home/anthler/Desktop/SMART CONTRACTS/crypto-raiser/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         511
@@ -733,7 +733,7 @@
     "src": "0:506:2"
   },
   "legacyAST": {
-    "absolutePath": "/home/anthler/Desktop/SMART CONTRACTS/fundraiser-dapp/contracts/Migrations.sol",
+    "absolutePath": "/home/anthler/Desktop/SMART CONTRACTS/crypto-raiser/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         511
@@ -1403,8 +1403,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0xb1a917C61D095a51f3fb9d8BE98C1CB85fA9244D",
-      "transactionHash": "0xf7bd1510beace22168a283a7fb9c12c85ecd8f7528eadd2d77efa3ac8729f78c"
+      "address": "0xF3f846E2AAF90c782BC7929bf521Ea83897FFDaE",
+      "transactionHash": "0x26528894f9b84bc400d5a76814bd8540c8603c9926d14ec64bd0a07a5c3354ef"
     },
     "1580489115396": {
       "events": {},
@@ -1492,7 +1492,7 @@
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-08-08T01:00:15.139Z",
+  "updatedAt": "2020-08-11T01:29:44.082Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
